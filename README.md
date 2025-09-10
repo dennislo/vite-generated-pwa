@@ -33,7 +33,7 @@ npm run dev
 
 1. Open http://localhost:5173 in your browser.
 2. See dev tools Application tab > Service Workers section to inspect the service worker. Refer to **Debugging Service
-   Workers** in (Useful links)[#useful-links] for more information.
+   Workers** in [Useful links](#useful-links) for more information.
 
 ## Noteworthy example files
 
