@@ -1,8 +1,6 @@
-import { VitePWA } from 'vite-plugin-pwa';
-import { defineConfig } from 'vite'
+import {VitePWA} from 'vite-plugin-pwa';
+import {defineConfig} from 'vite'
 import react from '@vitejs/plugin-react'
-
-const urlPattern = new RegExp(/^https:\/\/jsonplaceholder\.typicode\.com/i)
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -24,22 +22,25 @@ export default defineConfig({
 
     workbox: {
       globPatterns: ['**/*.{js,css,html,svg,png,ico}'],
-      //cleanupOutdatedCaches: true,
-      //clientsClaim: true,
-      runtimeCaching: [{
-        urlPattern, // Match API endpoints you want to cache
-        handler: 'NetworkFirst',
-        options: {
-          cacheName: 'api-cache',
-          expiration: {
-            maxEntries: 50,
-            maxAgeSeconds: 60 * 60 * 24 * 7 // 1 week
-          },
-          cacheableResponse: {
-            statuses: [0, 200]
+      cleanupOutdatedCaches: true,
+      clientsClaim: true,
+      runtimeCaching: [
+        {
+          urlPattern: /^https:\/\/jsonplaceholder\.typicode\.com/i, // Match API endpoints you want to cache
+          handler: 'CacheFirst',
+          options: {
+            cacheName: 'api-cache',
+            expiration: {
+              maxEntries: 50,
+              maxAgeSeconds: 60 * 60 * 24 * 7 // 1 week
+            },
+            cacheableResponse: {
+              statuses: [0, 200]
+            }
           }
         }
-      }]
+        // Add more runtime caching rules as needed
+      ]
     },
 
     devOptions: {
