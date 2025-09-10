@@ -14,14 +14,14 @@
 
 ## NPM Packages
 
-1.`vite-plugin-pwa` Zero-config PWA Framework-agnostic Plugin for Vite: https://github.com/vite-pwa/vite-plugin-pwa,
-see [guide](https://vite-pwa-org.netlify.app/guide/)
+1.[`vite-plugin-pwa`](https://github.com/vite-pwa/vite-plugin-pwa) Zero-config PWA Framework-agnostic Plugin for Vite,
+see [guide](https://vite-pwa-org.netlify.app/guide/) on how to add PWA to your project.
 
-* Includes `workbox`: Production-ready service worker libraries and
-  tooling: https://developers.google.com/web/tools/workbox
-    * `workbox-build`: https://developer.chrome.com/docs/workbox/modules/workbox-build#type-StrategyName
-    * `workbox-core`: https://developer.chrome.com/docs/workbox/modules/workbox-core
-    * `workbox-window`: https://developer.chrome.com/docs/workbox/modules/workbox-window
+* Includes [`workbox`](https://developers.google.com/web/tools/workbox): Production-ready service worker libraries and
+  tooling: 
+    * [`workbox-build`](https://developer.chrome.com/docs/workbox/modules/workbox-build#type-StrategyName)
+    * [`workbox-core`](https://developer.chrome.com/docs/workbox/modules/workbox-core)
+    * [`workbox-window`](https://developer.chrome.com/docs/workbox/modules/workbox-window)
 
 ## Running on localhost
 
@@ -31,8 +31,9 @@ npm run build
 npm run dev
 ```
 
-1. Open http://localhost:5173 in your browser.
-2. See dev tools Application tab > Service Workers section to inspect the service worker. Refer to **Debugging Service
+1. Open http://localhost:5173 in your browser. Ensure you use a incognito/private window or clear site data to see the
+   service worker registration in action.
+2. Open dev tools > Application tab > Application > Service Workers section to see the registered service. Refer to **Debugging Service
    Workers** in [Useful links](#useful-links) for more information.
 
 ## Noteworthy example files
@@ -42,7 +43,7 @@ npm run dev
       multiple) rules for different types of requests
     * `urlPattern`: A string or regular expression to match the URLs of the web service you want to cache
     * `handler`: The caching strategy to use. Options are `NetworkFirst`, `CacheFirst`, `StaleWhileRevalidate`, and
-      `CacheOnly`. See https://developer.chrome.com/docs/workbox/modules/workbox-strategies for more details.
+      `CacheOnly`. See [workbox-strategies](https://developer.chrome.com/docs/workbox/modules/workbox-strategies) for more details.
     * `options`: Further customization, such as the `cacheName` and expiration settings
 * `public/manifest.json` Web App Manifest file
 * `src/main.tsx` Main entry point of the React application
@@ -52,9 +53,9 @@ npm run dev
 
 ## [Useful links](#useful-links):
 
-* Scaffolding Vite PWA project: https://vite-pwa-org.netlify.app/guide/#scaffolding-your-first-vite-pwa-project
-* Debugging Service Workers: https://developer.chrome.com/docs/devtools/progressive-web-apps#summary
-* Workbox caching strategies: https://developer.chrome.com/docs/workbox/modules/workbox-strategies#type-CacheFirst
+* [Scaffolding Vite PWA project](https://vite-pwa-org.netlify.app/guide/#scaffolding-your-first-vite-pwa-project)
+* [Debugging Service Workers](https://developer.chrome.com/docs/devtools/progressive-web-apps#summary)
+* [Workbox caching strategies](https://developer.chrome.com/docs/workbox/modules/workbox-strategies#type-CacheFirst)
 
 ## Useful screenshots
 
