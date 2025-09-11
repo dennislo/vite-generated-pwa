@@ -2,7 +2,6 @@ import {VitePWA} from 'vite-plugin-pwa';
 import {defineConfig} from 'vite'
 import react from '@vitejs/plugin-react'
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), VitePWA({
     registerType: 'prompt',
@@ -25,11 +24,12 @@ export default defineConfig({
       cleanupOutdatedCaches: true,
       clientsClaim: true,
       runtimeCaching: [
+        // Rule 1: Caching posts API
         {
-          urlPattern: /^https:\/\/jsonplaceholder\.typicode\.com/i, // Match API endpoints you want to cache
+          urlPattern: /^https:\/\/jsonplaceholder\.typicode\.com\/posts/i,
           handler: 'CacheFirst',
           options: {
-            cacheName: 'api-cache',
+            cacheName: 'posts-api-cache',
             expiration: {
               maxEntries: 50,
               maxAgeSeconds: 60 * 60 * 24 * 7 // 1 week
@@ -38,13 +38,24 @@ export default defineConfig({
               statuses: [0, 200]
             }
           }
-        }
-        // Add more runtime caching rules as needed
+        },
+        // Rule 2: Caching user profile API with a different strategy
+        // {
+        //   urlPattern: ({ url }) => url.pathname.startsWith('/api/user/profile'),
+        //   handler: 'StaleWhileRevalidate', // Balance between speed and freshness
+        //   options: {
+        //     cacheName: 'user-profile-cache',
+        //     expiration: {
+        //       maxEntries: 10,
+        //       maxAgeSeconds: 60 * 60 * 24, // 1 day
+        //     },
+        //   },
+        //},
       ]
     },
 
     devOptions: {
-      enabled: true,
+      enabled: true, // Set to false for production, Set true to enable PWA in development mode
       navigateFallback: 'index.html',
       suppressWarnings: true,
       type: 'module',

@@ -1,24 +1,16 @@
-# Example Progressive Web App (Service Worker) + Vite.js / React / Workbox
+# Example Progressive Web App: Vite.js / React / Workbox
 
-<!-- TOC -->
-* [Example Progressive Web App (Service Worker) + Vite.js / React / Workbox](#example-progressive-web-app-service-worker--vitejs--react--workbox)
-  * [NPM Packages](#npm-packages)
-  * [Running on localhost](#running-on-localhost)
-  * [Noteworthy example files](#noteworthy-example-files)
-  * [Useful links:](#useful-links)
-  * [Useful screenshots](#useful-screenshots)
-    * [Registered list](#registered-list)
-    * [Cache storage](#cache-storage)
-    * [Request interception cache storage hit](#request-interception-cache-storage-hit)
-<!-- TOC -->
+## Common Use Cases
 
-## NPM Packages
+See [common use cases](documents/service-workers-common-use-cases.md).
 
-1.[`vite-plugin-pwa`](https://github.com/vite-pwa/vite-plugin-pwa) Zero-config PWA Framework-agnostic Plugin for Vite,
-see [guide](https://vite-pwa-org.netlify.app/guide/) on how to add PWA to your project.
+## _Proposal_: Tools / Packages
 
-* Includes [`workbox`](https://developers.google.com/web/tools/workbox): Production-ready service worker libraries and
-  tooling: 
+1. [`vite-plugin-pwa`](https://github.com/vite-pwa/vite-plugin-pwa) Zero-config PWA Framework-agnostic Plugin for Vite,
+   see [guide](https://vite-pwa-org.netlify.app/guide/) on how to add `vite-plugin-pwa` to project.
+
+2. Include [`workbox`](https://developers.google.com/web/tools/workbox): Production-ready service worker libraries and
+   tooling:
     * [`workbox-build`](https://developer.chrome.com/docs/workbox/modules/workbox-build#type-StrategyName)
     * [`workbox-core`](https://developer.chrome.com/docs/workbox/modules/workbox-core)
     * [`workbox-window`](https://developer.chrome.com/docs/workbox/modules/workbox-window)
@@ -27,29 +19,30 @@ see [guide](https://vite-pwa-org.netlify.app/guide/) on how to add PWA to your p
 
 ```bash
 npm install
-npm run build
 npm run dev
 ```
 
-1. Open http://localhost:5173 in your browser. Ensure you use a incognito/private window or clear site data to see the
+1. Open http://localhost:5173 in your browser. Ensure you use incognito/private window or clear site data to see the
    service worker registration in action.
-2. Open dev tools > Application tab > Application > Service Workers section to see the registered service. Refer to **Debugging Service
+2. Open dev tools > Application tab > Application > Service Workers section to see the registered service. Refer to *
+   *Debugging Service
    Workers** in [Useful links](#useful-links) for more information.
 
 ## Noteworthy example files
 
-* `vite.config.ts` Vite configuration file where the PWA plugin is configured
-    * `workbox.runtimeCaching`: This is the most important part for offline web service integration. Here you define (
+1. **`vite.config.ts`** Vite configuration file where the PWA plugin is configured
+    * **`workbox.runtimeCaching`**: This is the most important part for offline web service integration. Here you define (
       multiple) rules for different types of requests
     * `urlPattern`: A string or regular expression to match the URLs of the web service you want to cache
     * `handler`: The caching strategy to use. Options are `NetworkFirst`, `CacheFirst`, `StaleWhileRevalidate`, and
-      `CacheOnly`. See [workbox-strategies](https://developer.chrome.com/docs/workbox/modules/workbox-strategies) for more details.
+      `CacheOnly`. See [workbox-strategies](https://developer.chrome.com/docs/workbox/modules/workbox-strategies) for
+      more details.
     * `options`: Further customization, such as the `cacheName` and expiration settings
-* `public/manifest.json` Web App Manifest file
-* `src/main.tsx` Main entry point of the React application
-* `src/App.tsx` Example fetching data from API https://jsonplaceholder.typicode.com/posts
-* `src/PWAUpdate.tsx` React component to handle PWA updates
-* `pwa-assets.config.ts` Configuration for generating PWA assets (icons, splash screens, etc.)
+    * `devOptions.enabled`: Set to false for production, Set true to enable PWA in development mode
+2. `public/manifest.json` Web App Manifest file
+3. `src/App.tsx` Example fetching data from API https://jsonplaceholder.typicode.com/posts
+4. **`src/PWABadge.tsx`** React component to handle PWA updates
+5. `pwa-assets.config.ts` Configuration for generating PWA assets (icons, splash screens, etc.)
 
 ## [Useful links](#useful-links):
 
